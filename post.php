@@ -6,12 +6,11 @@ $this->need('sidebar.php'); ?>
 </header>
 <div id="main" role="main">
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-        
         <ul class="post-meta">
             <li itemprop="author" itemscope itemtype="http://schema.org/Person"><?php _e('作者: '); ?><a itemprop="name" href="<?php $this->author->permalink(); ?>" rel="author"><?php $this->author(); ?></a></li>
             <li><?php _e('时间: '); ?><time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date('Y-m-d'); ?></time></li>
             <li><?php _e('分类: '); ?><?php $this->category(','); ?></li>
-            <li><?php _e('阅读: '); ?><?php get_post_view($this) ?></li>
+            <li><?php _e('阅读: '); ?><?php getPostViews($this) ?></li>
         </ul>
         <div class="post-content" itemprop="articleBody">
             <?php $this->content(); ?>
