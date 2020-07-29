@@ -213,6 +213,10 @@ textarea {
 	padding        : 5px;
 }
 
+#nav {
+	overflow: hidden;
+}
+
 #site-menu {
 	list-style: none;
 	text-align: right;
@@ -252,6 +256,7 @@ textarea {
 #search {
 	position  : relative;
 	margin-top: 15px;
+	display   : flex;
 }
 
 #search input {
@@ -266,21 +271,10 @@ textarea {
 	padding    : 0;
 	width      : 24px;
 	height     : 24px;
-	background : transparent url(img/icon-search.png) no-repeat center center;
+	background : transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABNUlEQVRIid2VW42FMBCGPwlIQAISkICEIwEJdYCEIwEJSOCddloJSOg+7HTTvVAo2ZNNtkkTHmbm++fSAf71sdALjB4WgV0gCMwWTID2duAAjcCkQWPhTtXBN+hUaVTA5GDYoAvQOhgsmAyyb9BdVu5hFYgelpLjBp2WLgqESwAtS/SwBGiu+CSIh6VoqKWpS5mPfkWBWGy8wHi3cVlPxhJgFogOhlqAgyFlXwKE0zQPTl6mVwOOpylNg4NHLUBffPSwHhqlEbVgbgBSk+dDowBtalRNmdRvV3F90VjgeenRfPaZT9VnapqkxsNaykRtU/DyG8jPl2UXLRgLfYAmQGOh15p/27SnJSqo+/F6WBw8bkHgffwsGN2wu0DQ7znfV2lMb0FqxOT/iF8HJIhm+HwJ4E/OG7uFArUW86SLAAAAAElFTkSuQmCC) no-repeat center center;
 	direction  : ltr;
 	/* fix RTL language */
 	text-indent: -9999em;
-}
-
-@media (-webkit-min-device-pixel-ratio:2),
-(min-resolution:192dpi) {
-	#search button {
-		background-image       : url(img/icon-search@2x.png);
-		-webkit-background-size: 24px 24px;
-		-moz-background-size   : 24px 24px;
-		-o-background-size     : 24px 24px;
-		background-size        : 24px 24px;
-	}
 }
 
 /* ------------------
@@ -313,8 +307,9 @@ textarea {
 	margin-left: 250px !important;
 }
 
-#main[role="home"] .post-title {
-	float: right;
+.posts-list article {
+	display    : flex;
+	align-items: center;
 }
 
 .posts-list {
@@ -336,7 +331,7 @@ textarea {
 
 .post-time {
 	margin : 7px 5px;
-	display: inline-block;
+	display: none;
 	color  : #999999;
 }
 
@@ -344,9 +339,10 @@ textarea {
 	font-size  : 1.4em;
 	display    : inline-block;
 	overflow   : hidden;
-	width      : calc(100% - 76px - 5px * 2 - 1em);
 	height     : 1.4em;
 	line-height: 1.4em;
+	width      : auto;
+	margin-left: 10px;
 }
 
 .post-meta li {
@@ -456,7 +452,7 @@ textarea {
  * --------------- */
 .comments-title {
 	margin      : 10px 0;
-	padding: 5px 0;
+	padding     : 5px 0;
 	font-size   : 32px;
 	font-weight : 400;
 	border-color: #ccc;
@@ -508,17 +504,17 @@ textarea {
 }
 
 #textarea {
-	width        : 90%;
-	width        : calc(100% - 20px);
-	height       : 80px;
-	border       : 1px dashed #ccc;
-	background   : #FFF none repeat scroll 0% 0%;
-	padding      : 10px;
-	resize       : none;
+	width     : 90%;
+	width     : calc(100% - 20px);
+	height    : 80px;
+	border    : 1px dashed #ccc;
+	background: #FFF none repeat scroll 0% 0%;
+	padding   : 10px;
+	resize    : none;
 }
 
 .cancel-comment-reply {
-	float: right;
+	float : right;
 	margin: 10px;
 }
 
@@ -548,18 +544,17 @@ textarea {
  * secondary
  * --------------- */
 #secondary {
-	width             : 200px;
-	height            : 100%;
-	float             : left;
-	top               : 0;
-	left              : -200px;
-	position          : fixed;
-	transition        : all .2s linear;
-	background-color  : #ccc;
-	-webkit-box-shadow: inset -13px 1px 25px -14px rgba(0, 0, 0, 0.75);
-	-moz-box-shadow   : inset -13px 1px 25px -14px rgba(0, 0, 0, 0.75);
-	box-shadow        : inset -13px 1px 25px -14px rgba(0, 0, 0, 0.75);
-	overflow-x        : hidden;
+	width           : 200px;
+	height          : 100%;
+	float           : left;
+	top             : 0;
+	left            : -200px;
+	position        : fixed;
+	transition      : all .2s linear;
+	background-color: #ccc;
+	border          : 10px solid transparent;
+	box-sizing      : border-box;
+	overflow-x      : hidden;
 }
 
 #secondary.show {
@@ -675,11 +670,19 @@ img.alignright {
 		margin-left: 220px;
 	}
 
+	#main[role="home"] .post-time {
+		display: inline-block;
+	}
+
 	#secondary {
 		float     : none;
 		left      : 0;
 		background: transparent;
 		box-shadow: unset;
+	}
+
+	.site-search {
+		margin-left: 20px;
 	}
 
 	#mobnav {
